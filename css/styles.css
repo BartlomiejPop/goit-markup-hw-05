@@ -323,15 +323,11 @@ svg {
     margin-left: 30px;
 }
 
-.team-members figcaption {
-    padding-bottom: 30px;
-
+.member-name {
     display: flex;
     justify-content: center;
-}
 
-.member-name {
-    position: absolute;
+    text-align: center;
     margin-top: 30px;
 
     font-weight: 500;
@@ -341,7 +337,10 @@ svg {
 }
 
 .member-description {
-    margin-top: 59px;
+    padding-bottom: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 
     text-align: center;
 
