@@ -13,6 +13,11 @@
     --black-color: #000000;
     --team-presentation: #f5f4fa;
     --svg-icon-color: #afb1b8;
+    --overlay-background: rgba(47, 48, 58, 0.8);
+    --business-adress-link: rgba(255, 255, 255, 0.6);
+    --footer-social-media-background: rgba(255, 255, 255, 0.1);
+    --overlay-animation-background: rgba(33, 150, 243, 0.9);
+    --darkening: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -67,12 +72,21 @@ svg {
 }
 
 .header-container .top-links a {
+    padding-bottom: 26px;
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
     line-height: 1.2;
 
     color: var(--text-color);
+}
+
+.header-container .top-links a:hover {
+    border-bottom: solid 4px var(--hover-color);
+}
+
+.is-active {
+    border-bottom: solid 4px var(--hover-color);
 }
 
 .header-container .top-contacts {
@@ -245,6 +259,7 @@ svg {
 
 .box {
     position: relative;
+    overflow: hidden;
 }
 
 .services-pictures li:nth-child(n + 2) {
@@ -257,7 +272,7 @@ svg {
     padding: 27px;
     width: 100%;
 
-    background: rgba(47, 48, 58, 0.8);
+    background: var(--overlay-background);
 }
 
 .what-we-do-text {
@@ -444,7 +459,7 @@ footer a,
     line-height: 1.7;
     letter-spacing: 0.03em;
 
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--business-adress-link);
 }
 
 .footer-social-media {
@@ -491,7 +506,7 @@ footer a,
     width: 44px;
     height: 44px;
     fill: var(--white-color);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--footer-social-media-background);
     border-radius: 50%;
 }
 
@@ -548,39 +563,33 @@ footer a,
     list-style: none;
 }
 
-.portfolio > li:hover {
+.portfolio > li:hover,
+.portfolio > li:focus {
     cursor: pointer;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
         1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.effect {
-    overflow: hidden;
-    position: relative;
-    background-image: url(../images/technocrack.jpg);
-    width: 370px;
-    height: 294px;
+.portfolio > li:hover .overlay-animated,
+.portfolio > li:focus .overlay-animated {
+    transform: translateY(-100%);
 }
-.portfolio > li:hover .animated-overlay {
-    transform: translateY(0);
-}
-.animated-overlay {
-    padding: 29px 45px 24px;
+
+.overlay-animated {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 49px 45px 49px 24px;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    width: 370px;
+    height: 294px;
+    transform: translateY(0);
     color: var(--white-color);
-    background-color: rgba(33, 150, 243, 0.9);
-    transform: translateY(100%);
-    transition: transform 250ms ease;
+    background-color: var(--overlay-animation-background);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    font-style: normal;
-    font-weight: 400;
+.overlay-animated > p {
     font-size: 18px;
     line-height: 156%;
     letter-spacing: 0.03em;
@@ -588,12 +597,6 @@ footer a,
 
 .portfolio figure {
     background: var(--white-color);
-}
-
-.portfolio > a:focus {
-    cursor: pointer;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-        1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
 .portfolio figcaption {
@@ -624,4 +627,61 @@ footer a,
     line-height: 1.9;
     letter-spacing: 0.03em;
     color: var(--white-grey-text);
+}
+
+/* BACKDROP  */
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    animation-name: modalAppear;
+    transition-property: visibility, opacity, transform;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal {
+    position: absolute;
+    height: 581px;
+    width: 528px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 4px;
+    background-color: var(--white-color);
+}
+
+.close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin: 8px 8px 765px 490px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--white-color);
+    border: 1px solid var(--darkening);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@keyframes modalAppear {
+    0% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
 }
