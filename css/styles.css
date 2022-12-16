@@ -17,6 +17,7 @@
     --business-adress-link: rgba(255, 255, 255, 0.6);
     --footer-social-media-background: rgba(255, 255, 255, 0.1);
     --overlay-animation-background: rgba(33, 150, 243, 0.9);
+    --menu-hover-transparent: rgba(33, 150, 243, 0.4);
     --darkening: rgba(0, 0, 0, 0.5);
 }
 
@@ -71,8 +72,12 @@ svg {
     list-style: none;
 }
 
+.header-container .top-links li {
+    position: relative;
+}
+
 .header-container .top-links a {
-    padding-bottom: 26px;
+    padding-bottom: 27px;
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
@@ -81,12 +86,31 @@ svg {
     color: var(--text-color);
 }
 
-.header-container .top-links a:hover {
-    border-bottom: solid 4px var(--hover-color);
+.header-container .top-links a:hover,
+.header-container .top-links a:focus {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--hover-color);
 }
 
-.is-active {
-    border-bottom: solid 4px var(--hover-color);
+.top-links a:hover::after {
+    content: ' ';
+    position: absolute;
+    top: 46px;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--menu-hover-transparent);
+}
+
+.is-active::after {
+    content: ' ';
+    position: absolute;
+    top: 46px;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--hover-color) !important;
 }
 
 .header-container .top-contacts {
@@ -137,14 +161,12 @@ svg {
     color: var(--white-color);
 }
 
-.top-links a:hover,
-.top-links a:focus,
 .top-contacts a:hover,
 .top-contacts a:focus,
-.main-link a:hover,
-.main-link a:focus,
 .business-address a:hover,
 .business-address a:focus {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--hover-color);
 }
 
@@ -375,6 +397,8 @@ svg {
 
 .social-media a:focus,
 .social-media a:hover {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     fill: var(--white-color);
     background-color: var(--hover-color);
@@ -413,12 +437,16 @@ svg {
 
 .client-list a:hover,
 .client-list a:focus {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     border-color: var(--hover-color);
     cursor: pointer;
 }
 
 .client-list a:hover > svg,
 .client-list a:focus > svg {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     fill: var(--hover-color);
 }
 
@@ -546,6 +574,8 @@ footer a,
 
 .portfolio-filters button:hover,
 .portfolio-filters button:focus {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     background-color: var(--hover-color);
     color: var(--white-color);
     cursor: pointer;
@@ -564,6 +594,8 @@ footer a,
 
 .portfolio > li:hover,
 .portfolio > li:focus {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
         1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -640,7 +672,7 @@ footer a,
 
     animation-name: modalAppear;
     transition-property: visibility, opacity, transform;
-    transition-duration: 500ms;
+    transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
